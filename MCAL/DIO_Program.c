@@ -19,6 +19,46 @@
 #include "DIO_private.h"
 #include "DIO_config.h"
 
+DIO_ErrorState DIO_enumSetPortDirection    (u8 Copy_u8PORT, u8 Copy_u8DIRECTION){
+    DIO_ErrorState LOC_enumState = DIO_OK;
+ if((Copy_u8PORT <= DIO_PORTD)){
+      switch (Copy_u8PORT){
+       case DIO_PORTA : DDRA = Copy_u8DIRECTION ; break;
+       case DIO_PORTB : DDRB = Copy_u8DIRECTION; break;
+       case DIO_PORTC : DDRC = Copy_u8DIRECTION; break;
+       case DIO_PORTD : DDRD = Copy_u8DIRECTION; break;
+
+}
+
+}
+   else {LOC_enumState = DIO_NOK;
+
+   }
+
+ return LOC_enumState;
+
+}
+
+
+DIO_ErrorState DIO_enumSetPortValue (u8 Copy_u8PORT, u8 Copy_u8VALUE){
+	 DIO_ErrorState LOC_enumState = DIO_OK;
+	 if((Copy_u8PORT <= DIO_PORTD) && ( (Copy_u8VALUE<=255) || (Copy_u8VALUE==DIO_PORT_LOW) || (Copy_u8VALUE==DIO_PORT_HIGH) )){
+      switch (Copy_u8PORT){
+            case DIO_PORTA : PORTA = Copy_u8VALUE ; break;
+            case DIO_PORTB : PORTB = Copy_u8VALUE; break;
+            case DIO_PORTC : PORTC = Copy_u8VALUE; break;
+            case DIO_PORTD : PORTD = Copy_u8VALUE; break;
+
+ }
+
+}
+else {LOC_enumState = DIO_NOK;}
+
+	 return LOC_enumState;
+
+}
+
+
 DIO_ErrorState DIO_enumSetPinDirection    (u8 Copy_u8PORT, u8 Copy_u8PIN, u8 Copy_u8DIRECTION){
     DIO_ErrorState LOC_enumState = DIO_OK;
  if((Copy_u8PORT <= DIO_PORTD) && (Copy_u8PIN <= DIO_PIN7)){
@@ -73,6 +113,7 @@ else {LOC_enumState = DIO_NOK;}
 }
 	 return LOC_enumState;
 }
+
 DIO_ErrorState DIO_enumGetPinValue (u8 Copy_u8PORT, u8 Copy_u8PIN, u8* Copy_PtrData){
 	 DIO_ErrorState LOC_enumState = DIO_OK;
  if((Copy_u8PORT <= DIO_PORTD) && (Copy_u8PIN <= DIO_PIN7)){
