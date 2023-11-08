@@ -29,19 +29,20 @@
 typedef struct {
 
 	u8 Common;
-	u8 Port;
+	u8 DataPort;
 	u8 EnablePort;
-	u8 Pin;
+	u8 EnablePin;
 
 }SSD_Adjusting;
 
+
 void SSD_VoidInitPort(SSD_Adjusting SSD_Signal);
 
-void SSD_VoidOn(SSD_Adjusting SSD_Signal);
+void SSD_VoidEnable(SSD_Adjusting SSD_Signal);
 
-void SSD_VoidOf(SSD_Adjusting SSD_Signal);
+void SSD_VoidDisable(SSD_Adjusting SSD_Signal);
 
-void SSD_VoidWrite(SSD_Adjusting SSD_Signal, u8 CopyNumber);
+void SSD_VoidSendNumber(SSD_Adjusting SSD_Signal, u8 CopyNumber);
 
 
 void Delay_time(int a);
