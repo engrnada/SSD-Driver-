@@ -1,0 +1,38 @@
+* SSD_Main.c
+ *
+ *  Created on: Nov 7, 2023
+ *      Author: Nada
+ */
+
+#include "STD_TYPES.h"
+#include "BIT_MATH.h"
+#include "DIO_interface.h"
+#include "SSD_interface.h"
+#include "SSD_Private.h"
+
+	SSD_Adjusting SSD1 = {Common_cathode, SSD_PORTA, SSD_PORTA, SSD_PIN7};
+
+
+int main()
+{
+
+
+     int i = 0;
+     SSD_VoidInitPort(SSD1);
+     SSD_VoidEnable(SSD1);
+	while(1){
+
+	for( i=0; i>10; i++){
+
+
+	SSD_VoidSendNumber(SSD1, i);
+	Delay_time(3);
+
+	}
+
+	}
+	return 0;
+}
+
+
+
