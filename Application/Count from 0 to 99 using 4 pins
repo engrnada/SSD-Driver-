@@ -1,0 +1,64 @@
+/*
+ * SW_Main.c
+
+ *
+ *  Created on: Nov 12, 2023
+ *      Author: Nada
+ */
+
+
+
+#include "STD_TYPES.h"
+#include "BIT_MATH.h"
+
+#include "DIO_interface.h"
+#include "DIO_private.h"
+
+#include "SSD_interface.h"
+#include "SSD_Private.h"
+
+#include "avr/delay.h"
+
+
+SSD_Adjusting SSD1 =   {Common_cathode,SSD_PORTC, SSD_PORTD, SSD_PIN0};
+SSD_Adjusting SSD2 =   {Common_cathode,SSD_PORTC, SSD_PORTD, SSD_PIN1};
+
+
+
+int main (){
+	u32 i = 0;
+	u32 j = 0;
+	u32 z = 0;
+
+	SSD_VoidInitPort(SSD1);
+	SSD_VoidInitPort(SSD2);
+	SSD_VoidDisable(SSD1);
+	SSD_VoidDisable(SSD2);
+	while(1){
+
+      for  (j = 0; j<10; j++){
+
+        while (i != 10){
+        for(z = 0; z < 3; z++){
+
+	 	  SSD_VoidSendNumber(SSD1 , j);
+		  SSD_VoidEnable(SSD1);
+		  _delay_ms(5);
+		  SSD_VoidDisable(SSD1);
+	      SSD_VoidSendNumber(SSD2 , i);
+		  SSD_VoidEnable(SSD2);
+		  _delay_ms(5);
+			SSD_VoidDisable(SSD2);
+        }
+
+		    i++;
+
+		}
+
+
+		i=0;
+
+	}
+}
+	return 0;
+}
